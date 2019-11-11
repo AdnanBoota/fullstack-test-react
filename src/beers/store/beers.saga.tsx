@@ -2,9 +2,9 @@ import { call, put, takeLatest } from 'redux-saga/effects'
 import { getBeersResponse, getDetailsResponse, BeersActionsTypes } from './beers.actions';
 import { fetchBeers, fetchBeerDetails } from '../api/beers.api';
 
-function* fetchBeersEffect() {
+function* fetchBeersEffect(props: any) {
 	try {
-		const beers = yield call(fetchBeers);
+		const beers = yield call(fetchBeers, { id: props.id });
 		yield put(getBeersResponse(beers));
 	} catch (e) {
 		// TODO return some action.
@@ -33,7 +33,7 @@ function* searchBeersEffect(props: any) {
 	if (props.payload.search !== "")
 		yield put(getDetailsResponse(searchBeers));
 	else {
-		const beers = yield call(fetchBeers);
+		const beers = yield call(fetchBeers, { id: 1 });
 		yield put(getDetailsResponse(beers));
 	}
 }

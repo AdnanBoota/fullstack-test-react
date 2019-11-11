@@ -6,6 +6,7 @@ import styles from './beers-dashboard.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBeersRequest, getSearchResponse } from '../store/beers.actions';
 import Beer from '../components/beer.component';
+import InfiniteScroll from 'react-infinite-scroller';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 
 
@@ -16,22 +17,31 @@ const BeersDashboard = () => {
 	var beers = useSelector((state: any) => state.beersReducer.beers);
 	useEffect(() => {
 		if (!beers.length) {
-			dispatch(getBeersRequest());
+			// dispatch(getBeersRequest(1));
 		}
 	});
 	console.log(beers)
 
-	// const [beers, setValue] = useState(beers);
+	const [searchString, setValue] = useState('');
 	// setValue(beers);
 	// console.log(beers)
 	const searchCharts = (value: any) => {
 		// on type find the beer which contain string, or fetch all beers using dispatch
 		console.log(value);
+		setValue(value);
 
 		dispatch(getSearchResponse({ search: value, beers: beers }));
 	}
 
-	console.log(beers);
+	const loadItems = (page: any) => {
+		console.log(page, searchString);
+		// if (searchString === "" && page !== 1) page = 1;
+		if (searchString === "") {
+			dispatch(getBeersRequest(page));
+		}
+	}
+
+	const loader = <div className="loader">Loading ...</div>;
 
 
 	return (
@@ -47,11 +57,23 @@ const BeersDashboard = () => {
 					</InputGroup>
 				</Col>
 			</Row>
-			<Row>
-				{beers.map((el: any, index: number) =>
-					<Beer key={index} beer={el} />
-				)}
-			</Row>
+
+			<InfiniteScroll
+				pageStart={0}
+				loadMore={loadItems}
+				hasMore={true}
+				loader={loader}>
+
+				{/* <div className="tracks"> */}
+				{/* {items} */}
+				{/* </div> */}
+				<Row>
+					{beers.map((el: any, index: number) =>
+						<Beer key={el.id} beer={el} />
+					)}
+				</Row>
+			</InfiniteScroll>
+
 		</Container>
 	)
 };

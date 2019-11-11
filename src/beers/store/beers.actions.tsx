@@ -1,4 +1,4 @@
-import { IAction, DetailsAction } from '../../store/action.type';
+import { IAction, IPageAction, DetailsAction } from '../../store/action.type';
 
 
 export enum BeersActionsTypes {
@@ -10,8 +10,8 @@ export enum BeersActionsTypes {
 }
 
 
-export const getBeersRequest = (): IAction => {
-	return { type: BeersActionsTypes.GET_BEERS_REQUEST };
+export const getBeersRequest = (pageId: any): IPageAction => {
+	return { type: BeersActionsTypes.GET_BEERS_REQUEST, id: pageId };
 };
 
 export const getBeersResponse = (beers: any): IAction => {

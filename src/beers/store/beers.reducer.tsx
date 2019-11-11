@@ -14,8 +14,8 @@ const initialState: IBeersStateType = {
 const beersReducer = (state = initialState, action: IAction) => {
 	switch (action.type) {
 		case BeersActionsTypes.GET_BEERS_RESPONSE:
-			console.log('coming here', action)
-			return { ...state, beers: action.payload };
+			console.log('coming here', state.beers.concat(action.payload))
+			return { ...state, beers: state.beers.concat(action.payload) };
 		case BeersActionsTypes.GET_DETAILS_RESPONSE:
 			console.log('coming here', action)
 			return { ...state, beers: action.payload };
