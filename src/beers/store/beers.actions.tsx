@@ -14,8 +14,8 @@ export const getBeersRequest = (pageId: any): IPageAction => {
 	return { type: BeersActionsTypes.GET_BEERS_REQUEST, id: pageId };
 };
 
-export const getBeersResponse = (beers: any): IAction => {
-	return { type: BeersActionsTypes.GET_BEERS_RESPONSE, payload: beers };
+export const getBeersResponse = (beers: any, id: number): IPageAction => {
+	return { type: BeersActionsTypes.GET_BEERS_RESPONSE, payload: beers, id: id };
 };
 
 export const getDetailsRequest = (beerId: any): DetailsAction => {

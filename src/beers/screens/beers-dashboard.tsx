@@ -35,13 +35,13 @@ const BeersDashboard = () => {
 
 	const loadItems = (page: any) => {
 		console.log(page, searchString);
-		// if (searchString === "" && page !== 1) page = 1;
+		if (searchString === "" && page !== 1) page = 1;		//if this happens only get page-1 results
 		if (searchString === "") {
 			dispatch(getBeersRequest(page));
 		}
 	}
 
-	const loader = <div className="loader">Loading ...</div>;
+	const loader = <div key="loader" className="loader">Loading ...</div>;
 
 
 	return (
@@ -59,7 +59,7 @@ const BeersDashboard = () => {
 			</Row>
 
 			<InfiniteScroll
-				pageStart={0}
+				pageStart={1}
 				loadMore={loadItems}
 				hasMore={true}
 				loader={loader}>
@@ -69,7 +69,7 @@ const BeersDashboard = () => {
 				{/* </div> */}
 				<Row>
 					{beers.map((el: any, index: number) =>
-						<Beer key={el.id} beer={el} />
+						<Beer key={el.id + index} beer={el} />
 					)}
 				</Row>
 			</InfiniteScroll>

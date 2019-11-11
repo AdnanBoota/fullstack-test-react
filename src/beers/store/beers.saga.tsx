@@ -5,7 +5,7 @@ import { fetchBeers, fetchBeerDetails } from '../api/beers.api';
 function* fetchBeersEffect(props: any) {
 	try {
 		const beers = yield call(fetchBeers, { id: props.id });
-		yield put(getBeersResponse(beers));
+		yield put(getBeersResponse(beers, props.id));
 	} catch (e) {
 		// TODO return some action.
 	}
