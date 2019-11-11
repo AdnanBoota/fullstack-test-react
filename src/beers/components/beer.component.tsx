@@ -1,16 +1,35 @@
 import React from 'react';
-import styles from './beer.module.scss';
 
+// import history from '../../utils/History';
+import { withRouter } from "react-router";
+import { useHistory } from 'react-router-dom';
+import {
+	Col, Card, CardImg, CardText, CardBody,
+	CardTitle, CardSubtitle, Button
+} from 'reactstrap';
+import styles from './beer.module.scss';
+const Details = (props: any, history: any) => {
+	console.log('click', history);
+
+	history.push(`/details/${props.id}`, { id: props.id });
+
+}
 
 const Beer = (props: any) => {
-	const {beer} = props;
+	let test = useHistory()
+	// console.log(props.history);
+	const { beer, history } = props;
 	return (
-		<div className={styles.beer}>
-			<h4>{beer.name}</h4>
-			<p>{beer.tagline}</p>
-			<img src={beer.image_url} alt={'beer img'}/>
-		</div>
+		<Col md="3">
+			<Card className={styles.card} onClick={(e) => Details(beer, test)}>
+				<CardImg className={styles.cardimg} src={beer.image_url} alt={'beer img'} />
+				<CardBody>
+					<CardTitle>{beer.name}</CardTitle>
+					<CardSubtitle>{beer.tagline}</CardSubtitle>
+				</CardBody>
+			</Card>
+		</Col>
 	);
 };
 
-export default Beer;
+export default withRouter(Beer);

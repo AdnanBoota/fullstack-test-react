@@ -1,13 +1,7 @@
+.shopTitle {
+  text-align: center;
+}
 
 .container {
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
-  padding: 150px;
-
-  .beers {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
+  margin-top: 30px;
 }

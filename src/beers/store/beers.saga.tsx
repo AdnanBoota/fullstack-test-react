@@ -1,6 +1,6 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
-import { getBeersResponse, BeersActionsTypes } from './beers.actions';
-import { fetchBeers } from '../api/beers.api';
+import { getBeersResponse, getDetailsResponse, BeersActionsTypes } from './beers.actions';
+import { fetchBeers, fetchBeerDetails } from '../api/beers.api';
 
 function* fetchBeersEffect() {
 	try {
@@ -11,8 +11,43 @@ function* fetchBeersEffect() {
 	}
 }
 
+function* fetchBeersDetailsEffect(props: any) {
+	try {
+		console.log(props);
+		const beers = yield call(fetchBeerDetails, { id: props.id });
+		console.log(beers);
+		yield put(getDetailsResponse(beers));
+	} catch (e) {
+		// TODO return some action.
+	}
+}
+
+function* searchBeersEffect(props: any) {
+	console.log(props);
+	var searchBeers = props.payload.beers.filter((k: any) => {
+		console.log(k.name);
+		if (k.name.includes(props.payload.search)) return k;
+	});
+	console.log(props.payload.search !== "", searchBeers);
+
+	if (props.payload.search !== "")
+		yield put(getDetailsResponse(searchBeers));
+	else {
+		const beers = yield call(fetchBeers);
+		yield put(getDetailsResponse(beers));
+	}
+}
+
 function* beersSagas() {
 	yield takeLatest(BeersActionsTypes.GET_BEERS_REQUEST, fetchBeersEffect);
 }
 
-export default beersSagas;
+function* beerDetailsSagas() {
+	yield takeLatest(BeersActionsTypes.GET_DETAILS_REQUEST, fetchBeersDetailsEffect);
+}
+
+function* beerSearchSagas() {
+	yield takeLatest(BeersActionsTypes.GET_SEARCH_RESPONSE, searchBeersEffect);
+}
+
+export { beersSagas, beerDetailsSagas, beerSearchSagas };

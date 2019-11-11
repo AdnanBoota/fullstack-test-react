@@ -1,36 +1,37 @@
-
 $width: 200px;
 $height: 300px;
 
-
-.beer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  height: $height;
-  width: $width;
-  margin: 20px;
-  transform: scale(0);
-
-  background: #ff00981c;
-  border-radius: 10px;
-  box-shadow: 0 0 5px #ffffff3d;
-
-  opacity: 0;
-  animation: welcomeBeer 0.5s 0.2s forwards ease-out;
-
-  text-align: center;
-
-  img {
-	height: 40%;
-  }
+.card {
+  cursor: pointer;
+  margin: 20px 0px 0px 20px;
 }
 
-@keyframes welcomeBeer {
-  100% {
-	opacity: 1;
-	transform: scale(1);
-  }
+.cardimg {
+  width: 50px !important;
+  height: 175px;
+  margin: auto;
+  padding: 5px;
+}
+
+.detailsImg {
+  width: 150px !important;
+  height: 350px;
+  margin: auto;
+  padding: 5px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.foodPair {
+  margin: 0px 10px 10px 0px;
+}
+
+.gravityDiff {
+  margin-top: 10px;
+}
+
+.textJustify {
+  text-align: justify;
 }
