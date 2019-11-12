@@ -43,9 +43,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 
 
-
 const Model = require("./models/beers.model");
-
 
 // get all beers
 const getBeers = async () => {
@@ -76,8 +74,13 @@ const crawlBeers = async () => {
     //   console.log(breeds.data);
 };
 
-crawlBeers();
-
+Model.find({}, function (err, item) {
+    if (err) console.log('hello error ' + err);
+    // res.send(item);
+    if (item.length === 0)
+        crawlBeers();
+    // console.log('hello item ' + item.length);
+})
 
 
 app.use(bodyParser.json());
