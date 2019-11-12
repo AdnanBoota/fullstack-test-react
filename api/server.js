@@ -33,7 +33,8 @@ app.use(cors({ origin: 'http://localhost:3000' }));
 // });
 // Set up mongoose connection
 const mongoose = require('mongoose');
-let dev_db_url = 'mongodb://localhost/beers';
+// let dev_db_url = 'mongodb://localhost/beers';
+let dev_db_url = 'mongodb+srv://admin:test123@cluster0-v6l8e.mongodb.net/test?retryWrites=true&w=majority';
 const mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
