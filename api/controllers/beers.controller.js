@@ -17,8 +17,19 @@ exports.create = function (req, res) {
 };
 
 exports.all = function (req, res) {
-    // console.log(req.query.type);
-    Model.find(req.query, function (err, item) {
+
+    // const { page, perPage } = req.query();
+    if (req.query.page === undefined)
+        req.query.page = 1
+    if (req.query.perPage === undefined)
+        req.query.perPage = 20
+
+    console.log(req.query);
+    const options = {
+        page: parseInt(req.query.page, 10),
+        limit: parseInt(req.query.perPage, 10)
+    };
+    Model.paginate({}, options, function (err, item) {
         if (err) return next(err);
         res.send(item);
     })

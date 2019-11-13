@@ -61,6 +61,24 @@ const crawlBeers = async () => {
         let item = new Model({
             name: element.name,
             tagline: element.tagline,
+            first_brewed: element.first_brewed,
+            description: element.description,
+            image_url: element.image_url,
+            abv: element.abv,
+            ibu: element.ibu,
+            target_fg: element.target_fg,
+            target_og: element.target_og,
+            ebc: element.ebc,
+            srm: element.srm,
+            ph: element.ph,
+            attenuation_level: element.attenuation_level,
+            volume: element.volume,
+            boil_volume: element.boil_volume,
+            method: element.method,
+            ingredients: element.ingredients,
+            food_pairing: element.food_pairing,
+            brewers_tips: element.brewers_tips,
+            contributed_by: element.contributed_by,
             // types_id: req.body.types_id
         });
         item.save(function (err) {
