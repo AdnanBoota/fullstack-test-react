@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getBeersRequest, getSearchResponse } from '../store/beers.actions';
 import Beer from '../components/beer.component';
 import InfiniteScroll from 'react-infinite-scroller';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 
 
