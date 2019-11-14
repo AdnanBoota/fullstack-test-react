@@ -59,6 +59,7 @@ const crawlBeers = async () => {
     breeds.data.forEach(element => {
         console.log(element.name);
         let item = new Model({
+            id: element.id,
             name: element.name,
             tagline: element.tagline,
             first_brewed: element.first_brewed,

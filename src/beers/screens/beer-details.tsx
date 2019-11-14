@@ -29,7 +29,7 @@ const BeerDetails = (props: any) => {
 	console.log(beers, beers.length);
 
 	useEffect(() => {
-		if (beers.length !== 1) {
+		if (!beers.length) {
 			dispatch(getDetailsRequest(beerId));
 		}
 	});
