@@ -22,25 +22,19 @@ type PropsType = RouteComponentProps<PathParamsType> & {
 const BeerDetails = (props: any) => {
 	console.log(props);
 	const dispatch = useDispatch();
-	const beers = useSelector((state: any) => state.beersReducer.beers);
-	const beerId = props.match.params.id;
+	let beers = useSelector((state: any) => state.beersReducer.beers);
+	const beerId = parseInt(props.match.params.id);
+
+	beers = beers.filter((k: any) => k.id === beerId);
+	console.log(beers, beers.length);
 
 	useEffect(() => {
-		if (!beers.length) {
+		if (beers.length !== 1) {
 			dispatch(getDetailsRequest(beerId));
 		}
 	});
 
-	console.log('beer details page', beers);
-
 	return (
-		// <div className={`container ${styles.container}`}>
-		// 	<div className={styles.beers}>
-		// 		{beers.map((el: any, index: number) =>
-		// 			<BeerDetailsComponent key={index} beer={el} />
-		// 		)}
-		// 	</div>
-		// </div>
 		<Container className={styles.container}>
 			<h1 className={styles.shopTitle}>Welcome to the Beer Shop</h1>
 			{beers.map((el: any, index: number) =>

@@ -35,7 +35,7 @@ const BeersDashboard = () => {
 
 	const loadItems = (page: any) => {
 		console.log(page, searchString);
-		if (searchString === "" && page !== 1) page = 1;		//if this happens only get page-1 results
+		// if (searchString === "" && page !== 1) page = 1;		//if this happens only get page-1 results
 		if (searchString === "") {
 			dispatch(getBeersRequest(page));
 		}
@@ -59,9 +59,10 @@ const BeersDashboard = () => {
 			</Row>
 
 			<InfiniteScroll
-				pageStart={1}
+				pageStart={0}
 				loadMore={loadItems}
 				hasMore={true}
+				threshold={800}
 				loader={loader}>
 
 				{/* <div className="tracks"> */}
