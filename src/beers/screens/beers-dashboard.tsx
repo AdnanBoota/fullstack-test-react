@@ -15,7 +15,6 @@ const BeersDashboard = () => {
 
 	const dispatch = useDispatch();
 	var beers = useSelector((state: any) => state.beersReducer.beers);
-
 	const [searchString, setValue] = useState('');
 	const searchCharts = (value: any) => {
 		// on type find the beer which contain string, or fetch all beers using dispatch
@@ -51,12 +50,12 @@ const BeersDashboard = () => {
 				loader={loader}>
 				<Row>
 					{beers.map((el: any, index: number) =>
-						<Beer key={el._id + index} beer={el} />
+						<Beer key={el.id + index} beer={el} />
 					)}
 				</Row>
 			</InfiniteScroll> : <Row>
 					{beers.map((el: any, index: number) =>
-						<Beer key={el._id + index} beer={el} />
+						<Beer key={el.id + index} beer={el} />
 					)}
 				</Row>}
 

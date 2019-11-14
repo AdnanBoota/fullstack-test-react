@@ -14,7 +14,7 @@ function* fetchBeersEffect(props: any) {
 function* fetchBeersDetailsEffect(props: any) {
 	try {
 		const beers = yield call(fetchBeerDetails, { id: props.id });
-		yield put(getDetailsResponse([beers]));
+		yield put(getDetailsResponse(beers));
 	} catch (e) {
 		// TODO return some action.
 	}

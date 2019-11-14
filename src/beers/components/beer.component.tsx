@@ -9,7 +9,7 @@ import {
 } from 'reactstrap';
 import styles from './beer.module.scss';
 const Details = (props: any, history: any) => {
-	history.push(`/details/${props._id}`, { id: props._id });
+	history.push(`/details/${props.id}`, { id: props.id });
 }
 
 const Beer = (props: any) => {
