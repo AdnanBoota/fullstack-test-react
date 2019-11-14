@@ -20,13 +20,10 @@ type PropsType = RouteComponentProps<PathParamsType> & {
 }
 
 const BeerDetails = (props: any) => {
-	console.log(props);
+	const beerId = props.match.params.id;
 	const dispatch = useDispatch();
 	let beers = useSelector((state: any) => state.beersReducer.beers);
-	const beerId = parseInt(props.match.params.id);
-
-	beers = beers.filter((k: any) => k.id === beerId);
-	console.log(beers, beers.length);
+	beers = beers.filter((k: any) => k._id == beerId);
 
 	useEffect(() => {
 		if (!beers.length) {

@@ -11,12 +11,10 @@ const BeerDetails = (props: any) => {
 	const [value, setValue] = useState(false);
 	const { beer } = props;
 	const showGravityDiff = () => {
-		console.log(value);
 		const newValue = !value;
 		setValue(newValue);
 	}
 
-	console.log(beer);
 	return (
 		<Row>
 			<Col md="9">

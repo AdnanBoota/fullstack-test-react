@@ -9,15 +9,11 @@ import {
 } from 'reactstrap';
 import styles from './beer.module.scss';
 const Details = (props: any, history: any) => {
-	console.log('click', history);
-
-	history.push(`/details/${props.id}`, { id: props.id });
-
+	history.push(`/details/${props._id}`, { id: props._id });
 }
 
 const Beer = (props: any) => {
 	let test = useHistory()
-	// console.log(props.history);
 	const { beer, history } = props;
 	return (
 		<Col md="3">

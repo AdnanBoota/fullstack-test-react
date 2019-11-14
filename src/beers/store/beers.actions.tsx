@@ -19,7 +19,6 @@ export const getBeersResponse = (beers: any): IAction => {
 };
 
 export const getDetailsRequest = (beerId: any): DetailsAction => {
-	console.log(beerId);
 	return { type: BeersActionsTypes.GET_DETAILS_REQUEST, id: beerId };
 };
 

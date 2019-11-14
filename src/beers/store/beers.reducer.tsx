@@ -14,13 +14,11 @@ const initialState: IBeersStateType = {
 const beersReducer = (state = initialState, action: IPageAction) => {
 	switch (action.type) {
 		case BeersActionsTypes.GET_BEERS_RESPONSE:
-			console.log('coming here', action, state.beers.concat(action.payload))
-			return { ...state, beers: state.beers.concat(action.payload) };
+			let uniqueValues = [...state.beers, ...action.payload];
+			return { ...state, beers: uniqueValues };
 		case BeersActionsTypes.GET_DETAILS_RESPONSE:
-			console.log('coming here', action)
 			return { ...state, beers: action.payload };
 		default:
-			console.log('default state', state)
 			return state;
 	}
 };

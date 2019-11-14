@@ -15,34 +15,19 @@ const BeersDashboard = () => {
 
 	const dispatch = useDispatch();
 	var beers = useSelector((state: any) => state.beersReducer.beers);
-	useEffect(() => {
-		if (!beers.length) {
-			// dispatch(getBeersRequest(1));
-		}
-	});
-	console.log(beers)
 
 	const [searchString, setValue] = useState('');
-	// setValue(beers);
-	// console.log(beers)
 	const searchCharts = (value: any) => {
 		// on type find the beer which contain string, or fetch all beers using dispatch
-		console.log(value);
 		setValue(value);
-
 		dispatch(getSearchResponse({ search: value, beers: beers }));
 	}
 
 	const loadItems = (page: any) => {
-		console.log(page, searchString);
-		// if (searchString === "" && page !== 1) page = 1;		//if this happens only get page-1 results
-		if (searchString === "") {
-			dispatch(getBeersRequest(page));
-		}
+		dispatch(getBeersRequest(page));
 	}
 
 	const loader = <div key="loader" className="loader">Loading ...</div>;
-
 
 	return (
 		<Container className={styles.container}>
@@ -58,22 +43,23 @@ const BeersDashboard = () => {
 				</Col>
 			</Row>
 
-			<InfiniteScroll
+			{searchString === '' ? <InfiniteScroll
 				pageStart={0}
 				loadMore={loadItems}
 				hasMore={true}
-				threshold={800}
+				threshold={250}
 				loader={loader}>
-
-				{/* <div className="tracks"> */}
-				{/* {items} */}
-				{/* </div> */}
 				<Row>
 					{beers.map((el: any, index: number) =>
-						<Beer key={el.id + index} beer={el} />
+						<Beer key={el._id + index} beer={el} />
 					)}
 				</Row>
-			</InfiniteScroll>
+			</InfiniteScroll> : <Row>
+					{beers.map((el: any, index: number) =>
+						<Beer key={el._id + index} beer={el} />
+					)}
+				</Row>}
+
 
 		</Container>
 	)
