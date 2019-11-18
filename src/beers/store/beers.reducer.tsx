@@ -14,7 +14,7 @@ const initialState: IBeersStateType = {
 const beersReducer = (state = initialState, action: IPageAction) => {
 	switch (action.type) {
 		case BeersActionsTypes.GET_BEERS_RESPONSE:
-			let uniqueValues = [...state.beers, ...action.payload];
+			let uniqueValues = [...state.beers, ...action.payload.filter((item:any) => state.beers.every((item2:any) => item2._id != item._id))];
 			return { ...state, beers: uniqueValues };
 		case BeersActionsTypes.GET_DETAILS_RESPONSE:
 			return { ...state, beers: action.payload };
